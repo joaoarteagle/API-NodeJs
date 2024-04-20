@@ -1,0 +1,3 @@
+mongodb://localhost:27017
+
+mongodb+srv://joaopauloarteagle17:engenharia@cluster0.nyr7xfu.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0
