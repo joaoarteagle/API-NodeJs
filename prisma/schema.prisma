@@ -29,6 +29,7 @@ model Task{
   title           String
   description     String
   created_at      DateTime? @default(now())
+  //category        Categories @relation()
   associated_user Status
 
   @@map("task")
