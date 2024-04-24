@@ -17,21 +17,26 @@ model User{
   id        String @id @default(auto()) @map("_id") @db.ObjectId
   userName  String
   weight    Float
-  email     String
-  password  String
-
+  email     String @unique
+  password  String  
+  tasks     Task[] //relacionando Tarefas com Ususario
 
 @@map("user")
 }
 
 model Task{
-  id              String @id @default(auto()) @map("_id") @db.ObjectId
+  id              String      @id @default(auto()) @map("_id") @db.ObjectId
   title           String
   description     String
-  created_at      DateTime? @default(now())
-  //category        Categories @relation()
-  associated_user Status
+  created_at      DateTime?   @default(now())
+  type            String
+  status          Status
 
+  category        Categories? @relation(fields: [categoryId], references: [id])
+  categoryId      String?     @map("categories_id")
+  
+  associedUser    User?       @relation(fields: [associedUserId], references: [id])
+  associedUserId  String?     @map("associed_user_id") 
   @@map("task")
 
 }
@@ -40,6 +45,7 @@ model Categories{
   id    String @id @default(auto()) @map("_id") @db.ObjectId
   name  String
   color String
+  tasks Task[] //Relacionando as tarefas na categoria
 
   @@map("category")
 }
