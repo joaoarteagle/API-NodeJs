@@ -14,6 +14,8 @@ import { CreateCategoryController } from "./controllers/categories/CreateCategor
 import { GetAllCategoriesController } from "./controllers/categories/GetAllCategoriesController";
 import { GetCategoryByIdController } from "./controllers/categories/GetCategoryByIdController";
 import { DeleteCategoryController } from "./controllers/categories/DeleteCategoryController";
+import { UpdateCategoryController } from "./controllers/categories/UpdateCategoryController";
+import { UpdateTaskController } from "./controllers/task/UpdateTaskController";
 
 
 export async function routes(fastify: FastifyInstance, options: FastifyPluginOptions) {
@@ -66,6 +68,10 @@ export async function routes(fastify: FastifyInstance, options: FastifyPluginOpt
         return new DeleteTaskController().handle(request, reply);
     })
 
+    fastify.put("/task", async(request: FastifyRequest, reply: FastifyReply)=>{
+        return new UpdateTaskController().handle(request, reply);
+    })
+
 
 
     //Routes User_tasks
@@ -90,5 +96,9 @@ export async function routes(fastify: FastifyInstance, options: FastifyPluginOpt
 
     fastify.delete("/category", async(request: FastifyRequest, reply: FastifyReply)=>{
         return new DeleteCategoryController().handle(request, reply);
+    })
+
+    fastify.put("/category", async(request: FastifyRequest, reply: FastifyReply)=>{
+        return new UpdateCategoryController().handle(request, reply);
     })
 }
